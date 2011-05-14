@@ -63,4 +63,12 @@ public class Supply {
 		stacks.put(card, count);
 	}
 
+	public boolean isGameFinished() {
+		if (emptyStacks > 2) {
+			return true;
+		}
+		int provincesLeft = stacks.get(Cards.PROVINCE);
+		return provincesLeft == 0;
+	}
+
 }

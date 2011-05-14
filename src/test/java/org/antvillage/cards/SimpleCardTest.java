@@ -75,7 +75,7 @@ public class SimpleCardTest {
 			Card card = (Card)testparams[0];
 	    	assertEquals(card.getVictoryPoints(), testparams[1]);
 	    	assertEquals(card.getCost(), testparams[2]);
-	    	assertEquals(card.getMoneyValue(), testparams[3]);
+	    	assertEquals(card.getMoneyValue(null), testparams[3]);
 	    	assertEquals(card.getExtraBuys(), testparams[4]);
 	    	assertEquals(card.getExtraDraws(), testparams[5]);
 	    	assertEquals(card.getExtraActions(), testparams[6]);
