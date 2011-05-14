@@ -15,8 +15,8 @@ public class Game {
 	private static final int MAX_ROUNDS = 150;
 
 	private int round = 1;
-	public List<Player> players = new LinkedList<Player>();
-	public GameTurn gameTurn = new GameTurn();
+	public List<Player> players;
+	public GameTurn gameTurn;
 	public Supply supply;
 
 	public List<Player> start() {

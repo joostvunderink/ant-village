@@ -16,15 +16,11 @@ public class BmPocStrategy extends Player {
 	// has ref to supply
 	
 	public void takeTurn() {
-		/*
-		 * tell gameTurn to end the action phase (not needed because we never have an Action card)
-		 * play all money in hand
-		 * tell gameTurn to end the money phase (not needed once last Treasure is played)
-		 * buy the right card
-		 * end of turn
-		 */
+		gameTurn.endPhase(Phase.ACTION);
 		
 		playAllTreasures();
+
+		gameTurn.endPhase(Phase.MONEY);		
 		
 		boolean timeToBuyDuchy = isItTimeToBuyDuchy();
 		boolean timeToBuyEstate = isItTimeToBuyEstate();
