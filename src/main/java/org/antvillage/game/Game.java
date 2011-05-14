@@ -3,9 +3,6 @@ package org.antvillage.game;
 import java.util.LinkedList;
 import java.util.List;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
 /**
  * This class implements a single game.
  * 
@@ -29,6 +26,9 @@ public class Game {
 	}
 
 	private List<Player> determineWinners(Player playerEndingGame) {
+//		Map sco
+		
+		
 		List<Player> winners = new LinkedList<Player>();
 		return winners;
 	}
