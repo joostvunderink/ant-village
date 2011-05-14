@@ -1,7 +1,11 @@
 package org.antvillage.game;
 
+import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 
 /**
@@ -11,12 +15,14 @@ import java.util.List;
  *
  */
 public class Game {
+	private static final Logger RECORDER = LoggerFactory.getLogger(Recorder.class);
+
 
 	private static final int MAX_ROUNDS = 150;
 	
+	private int round = 1;
 	public List<Player> players = new LinkedList<Player>();
-
-
+	public GameTurn gameTurn = new GameTurn();
 
 
 	public List<Player> start() {
@@ -33,7 +39,28 @@ public class Game {
 
 
 	private Player runGameTurns() {
-		return null;
+		while (round < MAX_ROUNDS) {
+			RECORDER.info("\nROUND {}", round);
+			for (Player player: players) {
+				runTurn(player);
+				if (gameFinished()) {
+					return player;
+				}
+			}
+		}
+		throw new RuntimeException("Failed to finish game in " + MAX_ROUNDS + " turns, aborting. " );
+	}
+
+
+	private boolean gameFinished() {
+		
+		return false;
+	}
+
+
+	private void runTurn(Player player) {
+		RECORDER.info("\n{}", player);
+		gameTurn.takeTurn(player);
 	}
 
 

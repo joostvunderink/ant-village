@@ -36,9 +36,7 @@ public class PlayArea {
 		else {
 			Card drawn = drawPile.remove(0);
 			hand.add(drawn);
-			
 			LOG.debug("Drew {}", drawn);
-			
 			return drawn;
 		}
 	}
