@@ -3,6 +3,7 @@ package org.antvillage.cards;
 import static org.junit.Assert.assertEquals;
 
 import org.antvillage.cards.core.CopperCard;
+import org.antvillage.cards.core.CurseCard;
 import org.antvillage.cards.core.DuchyCard;
 import org.antvillage.cards.core.EstateCard;
 import org.antvillage.cards.core.GoldCard;
@@ -48,6 +49,11 @@ public class CoreCardTest {
 				new GoldCard(),
 				0, 6, 3, 0, 0, 0,
 				false, true, false
+			},
+			{
+				new CurseCard(),
+				-1, 0, 0, 0, 0, 0,
+				false, false, false
 			},
 	};
 	

@@ -30,4 +30,28 @@ public class CardTest {
 		assertFalse(card.isTreasure());
 		assertTrue(card.isVictory());
 	}
+
+	@Test
+	public void testActionTreasureCard() {
+		ActionTreasureCard card = new ActionTreasureCard();
+		assertTrue(card.isAction());
+		assertTrue(card.isTreasure());
+		assertFalse(card.isVictory());
+	}
+
+	@Test
+	public void testActionVictoryCard() {
+		ActionVictoryCard card = new ActionVictoryCard();
+		assertTrue(card.isAction());
+		assertFalse(card.isTreasure());
+		assertTrue(card.isVictory());
+	}
+
+	@Test
+	public void testTreasureVictoryCard() {
+		TreasureVictoryCard card = new TreasureVictoryCard();
+		assertFalse(card.isAction());
+		assertTrue(card.isTreasure());
+		assertTrue(card.isVictory());
+	}
 }
