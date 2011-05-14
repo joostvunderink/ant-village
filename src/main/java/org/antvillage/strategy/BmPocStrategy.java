@@ -25,15 +25,15 @@ public class BmPocStrategy extends Player {
 		boolean timeToBuyDuchy = isItTimeToBuyDuchy();
 		boolean timeToBuyEstate = isItTimeToBuyEstate();
 		
-		if (gameTurn.money >= 8) {
+		if (gameTurn.money >= 8 && supply.countCard(Cards.PROVINCE) > 0) {
 			gameTurn.buyCard(Cards.PROVINCE);
-		} else if (gameTurn.money >= 5 && timeToBuyDuchy) {
+		} else if (gameTurn.money >= 5 && timeToBuyDuchy && supply.countCard(Cards.DUCHY) > 0) {
 			gameTurn.buyCard(Cards.DUCHY);
-		} else if (gameTurn.money >= 2 && timeToBuyEstate) {
+		} else if (gameTurn.money >= 2 && timeToBuyEstate && supply.countCard(Cards.ESTATE) > 0) {
 			gameTurn.buyCard(Cards.ESTATE);
-		} else if (gameTurn.money >= 6) {
+		} else if (gameTurn.money >= 6 && supply.countCard(Cards.GOLD) > 0) {
 			gameTurn.buyCard(Cards.GOLD);
-		} else if (gameTurn.money >= 3) {
+		} else if (gameTurn.money >= 3 && supply.countCard(Cards.SILVER) > 0) {
 			gameTurn.buyCard(Cards.SILVER);
 		} else {
 			gameTurn.endPhase(Phase.BUY);
