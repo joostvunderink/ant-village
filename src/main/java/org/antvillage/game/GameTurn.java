@@ -1,8 +1,6 @@
 package org.antvillage.game;
 
 import org.antvillage.cards.Card;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 /**
  * This class provides the functionality for operating a game turn from the
@@ -30,8 +28,9 @@ public class GameTurn {
 		phase = Phase.ACTION;
 
 		player.takeTurn();
-
-		// cleanup and draw cards
+		
+		activePlayArea.cleanUp();
+		activePlayArea.drawHand();
 	}
 
 	public void playTreasure(Card card) {

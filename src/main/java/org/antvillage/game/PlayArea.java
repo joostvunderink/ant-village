@@ -68,4 +68,18 @@ public class PlayArea {
 			throw new RuntimeException("Tried to play " + card + " which is not in hand ");
 		}
 	}
+
+	public void drawHand() {
+		for(int i = 0; i < 5; i++) {
+			drawCard();
+		}
+	}
+
+	public void cleanUp() {
+		discardPile.addAll(hand);
+		hand.clear();
+		
+		discardPile.addAll(playedPile);
+		playedPile.clear();
+	}
 }
