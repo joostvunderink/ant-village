@@ -57,7 +57,7 @@ public class CoreCardTest {
 			Card card = (Card)testparams[0];
 			String txt = card.toString();
 	    	assertEquals(txt, card.getVictoryPoints(), testparams[1]);
-	    	assertEquals(txt, card.getCost(), testparams[2]);
+	    	assertEquals(txt, card.getCost(null), testparams[2]);
 	    	assertEquals(txt, card.getMoneyValue(null), testparams[3]);
 	    	assertEquals(txt, card.getExtraBuys(), testparams[4]);
 	    	assertEquals(txt, card.getExtraDraws(), testparams[5]);

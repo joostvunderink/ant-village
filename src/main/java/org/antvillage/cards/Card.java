@@ -27,7 +27,7 @@ public abstract class Card {
     	return vp;
     }
     
-    public int getCost() {
+    public int getCost(PlayArea activePlayArea) {
     	return cost;
     }
     

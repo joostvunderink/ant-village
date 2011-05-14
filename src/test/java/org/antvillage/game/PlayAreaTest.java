@@ -47,6 +47,7 @@ public class PlayAreaTest {
 		area.discardPile.add(Cards.SILVER);
 		assertEquals(Cards.SILVER, area.revealCard());
 		assertEquals(Cards.SILVER, area.revealCard());
+
 	}
 
 	@Test

@@ -6,7 +6,7 @@ import java.util.List;
 import org.antvillage.cards.Card;
 import org.antvillage.cards.Cards;
 import org.antvillage.game.Player;
-import org.antvillage.game.TurnPhase;
+import org.antvillage.game.Phase;
 
 public class BmPocStrategy extends Player {
 	
@@ -40,7 +40,7 @@ public class BmPocStrategy extends Player {
 		} else if (gameTurn.money >= 3) {
 			gameTurn.buyCard(Cards.SILVER);
 		} else {
-			gameTurn.endPhase(TurnPhase.BUY);
+			gameTurn.endPhase(Phase.BUY);
 		}
 	}
 
