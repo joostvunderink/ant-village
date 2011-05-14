@@ -9,11 +9,11 @@ public class TurnPhaseTest {
 	@Test
 	public void testNext() {
 		
-		assertEquals(TurnPhase.MONEY, TurnPhase.ACTION.next());
-		assertEquals(TurnPhase.BUY, TurnPhase.MONEY.next());
-		assertEquals(TurnPhase.CLEANUP, TurnPhase.BUY.next());
-		assertEquals(TurnPhase.DRAW, TurnPhase.CLEANUP.next());
-		assertEquals(null, TurnPhase.DRAW.next());
+		assertEquals(Phase.MONEY, Phase.ACTION.next);
+		assertEquals(Phase.BUY, Phase.MONEY.next);
+		assertEquals(Phase.CLEANUP, Phase.BUY.next);
+		assertEquals(Phase.DRAW, Phase.CLEANUP.next);
+		assertEquals(null, Phase.DRAW.next);
 	}
 
 }

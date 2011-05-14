@@ -13,7 +13,7 @@ import org.slf4j.LoggerFactory;
  * 
  */
 public class Game {
-	private static final Logger RECORDER = LoggerFactory.getLogger(Recorder.class);
+	private static final Recorder RECORDER = Recorder.getRecorder();
 
 	private static final int MAX_ROUNDS = 150;
 
