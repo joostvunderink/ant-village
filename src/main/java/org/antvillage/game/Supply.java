@@ -25,18 +25,32 @@ public class Supply {
 
 	public void takeCard(Card card) {
 		Integer count = stacks.get(card);
-		if (count == null || count == 0) {
-			throw new RuntimeException("Card " + card + " not present in supply.");
+		if (count == null) {
+			throw new RuntimeException("Card " + card + " is not present in supply.");
+		}
+		
+		if (count == 0) {
+			throw new RuntimeException("The " + card + " is empty.");
 		}
 		
 		count --;
-		if ( count == 0) {
+		if (count == 0) {
 			this.emptyStacks ++;
 		}
 
 		stacks.put(card, count );
 	}
 
+	public int countCard(Card card) {
+		Integer count = stacks.get(card);
+		
+		if (count == null) {
+			throw new RuntimeException("Card " + card + " is not present in supply.");
+		}
+		
+		return count;
+	}
+	
 	public void init(int number_of_players, List<Card> kingdomCards) {
 		createStack(Cards.COPPER, 60);
 		createStack(Cards.SILVER, 40);

@@ -89,8 +89,28 @@ public class SupplyTest {
 		catch (RuntimeException expected) {
 			// successfully detected absence
 		}
-}
+	}
 
+	@Test
+	public void testCountCard() {
+		Supply supply = new Supply();
+		supply.init(1, new ArrayList<Card>());
+		assertEquals(supply.countCard(Cards.ESTATE), 8);
+	}
+
+	@Test
+	public void testCountCardNotInSupply() {
+		Supply supply = new Supply();
+
+		try {
+			supply.countCard(Cards.ESTATE);
+			fail("Cannot count card Estate because it never was in the supply");
+		}
+		catch (RuntimeException expected) {
+			// successfully detected absence
+		}
+	}
+	
 	private void takeCardAndAssert(Supply supply, Integer expectedLeft, int stacksEmpty) {
 		supply.takeCard(Cards.CURSE);
 		assertEquals(expectedLeft, supply.stacks.get(Cards.CURSE));
