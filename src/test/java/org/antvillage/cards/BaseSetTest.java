@@ -2,6 +2,10 @@ package org.antvillage.cards;
 
 import static org.junit.Assert.assertEquals;
 
+import org.antvillage.cards.base.FestivalCard;
+import org.antvillage.cards.base.LaboratoryCard;
+import org.antvillage.cards.base.MarketCard;
+import org.antvillage.cards.base.SmithyCard;
 import org.antvillage.cards.base.VillageCard;
 import org.junit.Test;
 
@@ -13,11 +17,31 @@ public class BaseSetTest {
 	    	vp, cost, money, buys, draws, actions
 		    is_action, is_treasure, is_victory
 		*/
-		{
-			new VillageCard(),
-			0, 3, 0, 0, 1, 2,
-			true, false, false
-		},
+			{
+				new FestivalCard(),
+				0, 5, 2, 1, 0, 2,
+				true, false, false
+			},
+			{
+				new LaboratoryCard(),
+				0, 5, 0, 0, 2, 1,
+				true, false, false
+			},
+			{
+				new MarketCard(),
+				0, 5, 1, 1, 1, 1,
+				true, false, false
+			},
+			{
+				new SmithyCard(),
+				0, 4, 0, 0, 3, 0,
+				true, false, false
+			},
+			{
+				new VillageCard(),
+				0, 3, 0, 0, 1, 2,
+				true, false, false
+			},
 	};
 	
 	@Test
