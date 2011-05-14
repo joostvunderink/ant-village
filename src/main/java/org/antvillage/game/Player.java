@@ -6,7 +6,7 @@ package org.antvillage.game;
  * @author Verik
  *
  */
-public abstract class Player {
+public class Player {
 
 	public PlayArea playArea;
 	public GameTurn gameTurn;

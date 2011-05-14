@@ -20,15 +20,13 @@ public class GameTurn {
 	public int money;
 	public int actions;
 	public int buys;
-	private TurnPhase phase;
+	public TurnPhase phase;
 
 	public void takeTurn(Player player) {
 		activePlayArea = player.playArea;
-
 		money = 0;
 		actions = 1;
 		buys = 1;
-
 		phase = TurnPhase.ACTION;
 
 		player.takeTurn();
@@ -37,7 +35,8 @@ public class GameTurn {
 	}
 
 	public void playTreasure(Card card) {
-		checkPhase(TurnPhase.BUY);
+		checkPhase(TurnPhase.MONEY);
+		activePlayArea.play(card);
 		money += card.getMoneyValue(activePlayArea);
 	}
 
@@ -57,6 +56,7 @@ public class GameTurn {
 	}
 
 	public void buyCard(Card card) {
+		checkPhase(TurnPhase.BUY);
 		return;
 	}
 }

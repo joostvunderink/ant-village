@@ -59,4 +59,13 @@ public class PlayArea {
 		
 		Collections.shuffle(drawPile);
 	}
+	
+	public void play(Card card) {
+		if ( hand.remove(card)) {
+			playedPile.add(card);
+		}
+		else {
+			throw new RuntimeException("Tried to play " + card + " which is not in hand ");
+		}
+	}
 }

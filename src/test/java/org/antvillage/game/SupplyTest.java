@@ -1,6 +1,6 @@
 package org.antvillage.game;
 
-import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.*;
 import static org.junit.Assert.fail;
 
 import java.util.ArrayList;
@@ -64,8 +64,8 @@ public class SupplyTest {
 		supply.init(2, new ArrayList<Card>());
 		
 		try {
-			supply.takeCard(Cards.SMITHY);
-			fail("Failed to detect absense of smithy in supply");
+			supply.takeCard(Cards.VILLAGE);
+			fail("Failed to detect absense of card in supply");
 		}
 		catch (RuntimeException expected) {
 			// successfully detected absence
@@ -132,10 +132,27 @@ public class SupplyTest {
 		assertEquals((Integer)40, supply.stacks.get(Cards.SILVER));
 		assertEquals((Integer)30, supply.stacks.get(Cards.GOLD));
 	}
+	
+	@Test
+	public void testIsGameFinished() {
+		Supply supply = new Supply();
+		supply.init(2, new ArrayList<Card>());
+		assertFalse(supply.isGameFinished());
+		
+		supply.emptyStacks = 2;
+		assertFalse(supply.isGameFinished());
 
+		supply.emptyStacks = 3;
+		assertTrue(supply.isGameFinished());
+		
+		supply.emptyStacks = 4;
+		assertTrue(supply.isGameFinished());
+		
+		supply.emptyStacks = 2;
+		assertFalse(supply.isGameFinished());
 
-
-//	public void testTakeCard() {
-//	}	
+		supply.stacks.put(Cards.PROVINCE, 0);
+		assertTrue(supply.isGameFinished());
+	}
 
 }
