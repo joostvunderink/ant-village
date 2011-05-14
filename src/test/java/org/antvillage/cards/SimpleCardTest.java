@@ -7,10 +7,14 @@ import org.antvillage.cards.base.LaboratoryCard;
 import org.antvillage.cards.base.MarketCard;
 import org.antvillage.cards.base.SmithyCard;
 import org.antvillage.cards.base.VillageCard;
+import org.antvillage.cards.base.WoodcutterCard;
+import org.antvillage.cards.intrigue.GreatHallCard;
+import org.antvillage.cards.intrigue.HaremCard;
+import org.antvillage.cards.seaside.BazaarCard;
 import org.junit.Test;
 
 
-public class BaseSetTest {
+public class SimpleCardTest {
 	private Object[][] tests = {
 		/*
 		    class,
@@ -18,9 +22,24 @@ public class BaseSetTest {
 		    is_action, is_treasure, is_victory
 		*/
 			{
+				new BazaarCard(),
+				0, 5, 1, 0, 1, 2,
+				true, false, false
+			},
+			{
 				new FestivalCard(),
 				0, 5, 2, 1, 0, 2,
 				true, false, false
+			},
+			{
+				new GreatHallCard(),
+				1, 3, 0, 0, 1, 1,
+				true, false, true
+			},
+			{
+				new HaremCard(),
+				2, 6, 2, 0, 0, 0,
+				false, true, true
 			},
 			{
 				new LaboratoryCard(),
@@ -40,6 +59,11 @@ public class BaseSetTest {
 			{
 				new VillageCard(),
 				0, 3, 0, 0, 1, 2,
+				true, false, false
+			},
+			{
+				new WoodcutterCard(),
+				0, 3, 2, 1, 0, 0,
 				true, false, false
 			},
 	};
