@@ -72,7 +72,7 @@ public class SimpleCardTest {
 	public void testAll() {
 		for (int i = 0; i < tests.length; i++) {
 			Object[] testparams = tests[i];
-			BaseCard card = (BaseCard)testparams[0];
+			Card card = (Card)testparams[0];
 	    	assertEquals(card.getVictoryPoints(), testparams[1]);
 	    	assertEquals(card.getCost(), testparams[2]);
 	    	assertEquals(card.getMoneyValue(), testparams[3]);

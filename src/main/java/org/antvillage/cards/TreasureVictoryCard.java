@@ -1,6 +1,6 @@
 package org.antvillage.cards;
 
-public class TreasureVictoryCard extends BaseCard {
+public class TreasureVictoryCard extends Card {
 
     public boolean isTreasure() {
     	return true;

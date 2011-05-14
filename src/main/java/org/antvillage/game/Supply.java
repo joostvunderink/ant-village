@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.Map;
 
 import org.antvillage.cards.Card;
+import org.antvillage.cards.Cards;
 
 /**
  * This class defines the supply that is used in a single game.
@@ -37,21 +38,21 @@ public class Supply {
 	}
 
 	public void init(int number_of_players, List<Card> kingdomCards) {
-		createStack(Card.COPPER, 60);
-		createStack(Card.SILVER, 40);
-		createStack(Card.GOLD, 30);
+		createStack(Cards.COPPER, 60);
+		createStack(Cards.SILVER, 40);
+		createStack(Cards.GOLD, 30);
 
 		int numberOfCurses = (number_of_players - 1) * 10;
-		createStack(Card.CURSE, numberOfCurses);
+		createStack(Cards.CURSE, numberOfCurses);
 
 		int numberOfVictoryCards = VICTORY_CARDS_FOR_PLAYERS[number_of_players];
-		createStack(Card.ESTATE, numberOfVictoryCards);
-		createStack(Card.DUCHY, numberOfVictoryCards);
-		createStack(Card.PROVINCE, numberOfVictoryCards);
+		createStack(Cards.ESTATE, numberOfVictoryCards);
+		createStack(Cards.DUCHY, numberOfVictoryCards);
+		createStack(Cards.PROVINCE, numberOfVictoryCards);
 
 		for (Card kingdomCard : kingdomCards) {
 			int stackSize = 10;
-			if (kingdomCard.implementation.isVictory()) {
+			if (kingdomCard.isVictory()) {
 				stackSize = numberOfVictoryCards;
 			}
 			createStack(kingdomCard, stackSize);

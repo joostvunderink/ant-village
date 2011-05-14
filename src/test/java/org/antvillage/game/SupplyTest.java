@@ -1,11 +1,12 @@
 package org.antvillage.game;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.fail;
 
 import java.util.ArrayList;
 
 import org.antvillage.cards.Card;
-import org.antvillage.game.Supply;
+import org.antvillage.cards.Cards;
 import org.junit.Test;
 
 public class SupplyTest {
@@ -63,7 +64,7 @@ public class SupplyTest {
 		supply.init(2, new ArrayList<Card>());
 		
 		try {
-			supply.takeCard(Card.SMITHY);
+			supply.takeCard(Cards.SMITHY);
 			fail("Failed to detect absense of smithy in supply");
 		}
 		catch (RuntimeException expected) {
@@ -82,7 +83,7 @@ public class SupplyTest {
 		takeCardAndAssert(supply, 0, 1);
 
 		try {
-			supply.takeCard(Card.CURSE);
+			supply.takeCard(Cards.CURSE);
 			fail("Failed to detect zero left of GOLD in supply");
 		}
 		catch (RuntimeException expected) {
@@ -91,25 +92,25 @@ public class SupplyTest {
 }
 
 	private void takeCardAndAssert(Supply supply, Integer expectedLeft, int stacksEmpty) {
-		supply.takeCard(Card.CURSE);
-		assertEquals(expectedLeft, supply.stacks.get(Card.CURSE));
+		supply.takeCard(Cards.CURSE);
+		assertEquals(expectedLeft, supply.stacks.get(Cards.CURSE));
 		assertEquals(stacksEmpty, supply.emptyStacks);
 	}
 
 	private void assertVictoryCards(Supply supply, Integer expectedVictoryCards) {
-		assertEquals(expectedVictoryCards, supply.stacks.get(Card.ESTATE));
-		assertEquals(expectedVictoryCards, supply.stacks.get(Card.DUCHY));
-		assertEquals(expectedVictoryCards, supply.stacks.get(Card.PROVINCE));
+		assertEquals(expectedVictoryCards, supply.stacks.get(Cards.ESTATE));
+		assertEquals(expectedVictoryCards, supply.stacks.get(Cards.DUCHY));
+		assertEquals(expectedVictoryCards, supply.stacks.get(Cards.PROVINCE));
 	}
 
 	private void assertCurses(Supply supply, Integer expectedCurses) {
-		assertEquals(expectedCurses, supply.stacks.get(Card.CURSE));
+		assertEquals(expectedCurses, supply.stacks.get(Cards.CURSE));
 	}
 
 	private void assertTreasureCards(Supply supply) {
-		assertEquals((Integer)60, supply.stacks.get(Card.COPPER));
-		assertEquals((Integer)40, supply.stacks.get(Card.SILVER));
-		assertEquals((Integer)30, supply.stacks.get(Card.GOLD));
+		assertEquals((Integer)60, supply.stacks.get(Cards.COPPER));
+		assertEquals((Integer)40, supply.stacks.get(Cards.SILVER));
+		assertEquals((Integer)30, supply.stacks.get(Cards.GOLD));
 	}
 
 
