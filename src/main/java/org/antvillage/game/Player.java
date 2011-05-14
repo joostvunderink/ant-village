@@ -6,6 +6,11 @@ package org.antvillage.game;
  * @author Verik
  *
  */
-public class Player {
+public abstract class Player {
 
+	public PlayArea playArea;
+	
+	public void takeTurn() {
+		
+	}
 }
