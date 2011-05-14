@@ -4,7 +4,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import org.antvillage.cards.Cards;
+import org.antvillage.cards.Card;
 
 /**
  * This class defines the supply that is used in a single game.
@@ -15,14 +15,14 @@ public class Supply {
 
 	private static final int[] VICTORY_CARDS_FOR_PLAYERS = { 0, 8, 8, 12, 12 };
 
-	public Map<Cards, Integer> stacks = new HashMap<Cards, Integer>();
+	public Map<Card, Integer> stacks = new HashMap<Card, Integer>();
 	public int emptyStacks = 0;
 
 	public Supply() {
 		super();
 	}
 
-	public void takeCard(Cards card) {
+	public void takeCard(Card card) {
 		Integer count = stacks.get(card);
 		if (count == null || count == 0) {
 			throw new RuntimeException("Card " + card + " not present in supply.");
@@ -36,29 +36,29 @@ public class Supply {
 		stacks.put(card, count );
 	}
 
-	public void init(int number_of_players, List<Cards> kingdomCards) {
-		createStack(Cards.COPPER, 60);
-		createStack(Cards.SILVER, 40);
-		createStack(Cards.GOLD, 30);
+	public void init(int number_of_players, List<Card> kingdomCards) {
+		createStack(Card.COPPER, 60);
+		createStack(Card.SILVER, 40);
+		createStack(Card.GOLD, 30);
 
 		int numberOfCurses = (number_of_players - 1) * 10;
-		createStack(Cards.CURSE, numberOfCurses);
+		createStack(Card.CURSE, numberOfCurses);
 
 		int numberOfVictoryCards = VICTORY_CARDS_FOR_PLAYERS[number_of_players];
-		createStack(Cards.ESTATE, numberOfVictoryCards);
-		createStack(Cards.DUCHY, numberOfVictoryCards);
-		createStack(Cards.PROVINCE, numberOfVictoryCards);
+		createStack(Card.ESTATE, numberOfVictoryCards);
+		createStack(Card.DUCHY, numberOfVictoryCards);
+		createStack(Card.PROVINCE, numberOfVictoryCards);
 
-		for (Cards kingdomCard : kingdomCards) {
+		for (Card kingdomCard : kingdomCards) {
 			int stackSize = 10;
-			if (kingdomCard.card.isVictory()) {
+			if (kingdomCard.implementation.isVictory()) {
 				stackSize = numberOfVictoryCards;
 			}
 			createStack(kingdomCard, stackSize);
 		}
 	}
 
-	private void createStack(Cards card, int count) {
+	private void createStack(Card card, int count) {
 		stacks.put(card, count);
 	}
 

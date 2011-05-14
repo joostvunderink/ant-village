@@ -55,7 +55,7 @@ public class CoreCardTest {
 	public void testAll() {
 		for (int i = 0; i < tests.length; i++) {
 			Object[] testparams = tests[i];
-			Card card = (Card)testparams[0];
+			BaseCard card = (BaseCard)testparams[0];
 	    	assertEquals(card.getVictoryPoints(), testparams[1]);
 	    	assertEquals(card.getCost(), testparams[2]);
 	    	assertEquals(card.getMoneyValue(), testparams[3]);
