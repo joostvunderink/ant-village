@@ -6,8 +6,10 @@ import java.util.List;
 import org.antvillage.cards.Card;
 import org.antvillage.cards.Cards;
 import org.antvillage.game.Player;
+import org.antvillage.game.TurnPhase;
 
 public class BmPocStrategy extends Player {
+	
 	
 	// has ref to gameTurn
 	// has ref to playArea
@@ -27,30 +29,29 @@ public class BmPocStrategy extends Player {
 		boolean timeToBuyDuchy = isItTimeToBuyDuchy();
 		boolean timeToBuyEstate = isItTimeToBuyEstate();
 		
-		if (gameTurn.money() >= 8) {
+		if (gameTurn.money >= 8) {
 			gameTurn.buyCard(Cards.PROVINCE);
-		} else if (gameTurn.money() >= 5 && timeToBuyDuchy) {
+		} else if (gameTurn.money >= 5 && timeToBuyDuchy) {
 			gameTurn.buyCard(Cards.DUCHY);
-		} else if (gameTurn.money() >= 2 && timeToBuyEstate) {
+		} else if (gameTurn.money >= 2 && timeToBuyEstate) {
 			gameTurn.buyCard(Cards.ESTATE);
-		} else if (gameTurn.money() >= 6) {
+		} else if (gameTurn.money >= 6) {
 			gameTurn.buyCard(Cards.GOLD);
-		} else if (gameTurn.money() >= 3) {
+		} else if (gameTurn.money >= 3) {
 			gameTurn.buyCard(Cards.SILVER);
 		} else {
-			gameTurn.endPhase(Phases.BUY);
+			gameTurn.endPhase(TurnPhase.BUY);
 		}
 	}
 
 	public boolean isItTimeToBuyDuchy() {
 		int numProvincesInSupply = supply.countCard(Cards.PROVINCE);
-		int numPlayers = gameTurn.getNumberOfPlayers();
 		
-		if (numPlayers <= 2 && numProvincesInSupply <= 5) {
+		if (playerCount <= 2 && numProvincesInSupply <= 5) {
 			return true;
 		}
 		
-		if (numPlayers >= 3 && numPlayers <= 4 && numProvincesInSupply <= 8) {
+		if (playerCount >= 3 && playerCount <= 4 && numProvincesInSupply <= 8) {
 			return true;
 		}
 		
@@ -60,11 +61,11 @@ public class BmPocStrategy extends Player {
 	public boolean isItTimeToBuyEstate() {
 		int numProvincesInSupply = supply.countCard(Cards.PROVINCE);
 		
-		if (numPlayers <= 2 && numProvincesInSupply <= 2) {
+		if (playerCount <= 2 && numProvincesInSupply <= 2) {
 			return true;
 		}
 		
-		if (numPlayers >= 3 && numPlayers <= 4 && numProvincesInSupply <= 3) {
+		if (playerCount >= 3 && playerCount <= 4 && numProvincesInSupply <= 3) {
 			return true;
 		}
 		
@@ -81,7 +82,7 @@ public class BmPocStrategy extends Player {
 		}
 		
 		for (Card card: treasureCards) {
-			playArea.playTreasure(card);
+			gameTurn.playTreasure(card);
 		}
 	}
 }

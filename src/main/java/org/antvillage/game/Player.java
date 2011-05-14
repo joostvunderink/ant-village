@@ -9,6 +9,9 @@ package org.antvillage.game;
 public abstract class Player {
 
 	public PlayArea playArea;
+	public GameTurn gameTurn;
+	public Supply supply;
+	public int playerCount;
 	
 	public void takeTurn() {
 		
