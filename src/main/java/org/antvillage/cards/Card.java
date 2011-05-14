@@ -1,5 +1,7 @@
 package org.antvillage.cards;
 
+import org.antvillage.game.PlayArea;
+
 public abstract class Card {
 	public int vp = 0;
     public int cost = 0;
@@ -29,7 +31,7 @@ public abstract class Card {
     	return cost;
     }
     
-    public int getMoneyValue() {
+    public int getMoneyValue(PlayArea playArea) {
     	return value;
     }
     
