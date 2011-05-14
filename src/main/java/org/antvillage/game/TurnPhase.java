@@ -18,7 +18,7 @@ public enum TurnPhase {
     	}
     }
     
-    public int order;
+    private int order;
     
 	private TurnPhase(int order) {
 		this.order = order;
