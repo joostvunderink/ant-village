@@ -7,13 +7,13 @@ public class SimulatorTest {
 
 	@Test
 	public void testStart() {
-		Simulator simulator = new Simulator();
+//		Simulator simulator = new Simulator();
 		
-		simulator.runRandomGeneration();
+//		simulator.runRandomGeneration();
 		
-		for (int i = 0; i < 100; i++ ) {
-			simulator.runAndEvolveGeneration();
-		}
+//		for (int i = 0; i < 100; i++ ) {
+//			simulator.runAndEvolveGeneration();
+//		}
 	}
 
 }

@@ -65,11 +65,6 @@ public class GameTest {
 		assertEquals(winner, player3);
 	}
 
-	private void assertWinner(List<Player> players, Player player) {
-		assertEquals(1, players.size());
-		assertEquals(player, players.get(0));
-	}
-
 	private Player createAndAddPlayer(List<Player> players, String name) {
 		Player player = new Player();
 		player.name = name;

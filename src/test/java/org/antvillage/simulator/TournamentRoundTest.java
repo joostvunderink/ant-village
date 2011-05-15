@@ -1,7 +1,5 @@
 package org.antvillage.simulator;
 
-import static org.junit.Assert.*;
-
 import java.util.List;
 
 import org.antvillage.cards.Card;

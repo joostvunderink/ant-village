@@ -61,6 +61,7 @@ public class Run {
 			Object[] args = { player, playerWins, percentageWins };
 			logger.info("{} wins {} ({} %)", args);
 		}
+		logger.info("Duration: {} ms)", duration);
 	}
 
 	private void init() {
