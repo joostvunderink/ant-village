@@ -25,9 +25,9 @@ public class Bot extends Player {
 		
 		playAllTreasures();
 
-		gameTurn.endPhase(Phase.MONEY);		
+		gameTurn.endPhase(Phase.MONEY);
 
-		cardValues.initFromSupply(supply);
+		cardValues.initFromSupply(this);
 		
 		for (Gene gene: genes) {
 			gene.calculateBuyValues(cardValues, this);
