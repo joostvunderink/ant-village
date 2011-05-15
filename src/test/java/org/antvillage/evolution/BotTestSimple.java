@@ -1,6 +1,7 @@
 package org.antvillage.evolution;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotSame;
 
 import java.util.LinkedList;
 import java.util.List;
@@ -14,6 +15,34 @@ import org.antvillage.game.Player;
 import org.junit.Test;
 
 public class BotTestSimple {
+	
+	@Test
+	public void testBotClone() {
+		SilverGene silverGene = new SilverGene();
+		GoldGene goldGene = new GoldGene();
+		silverGene.setParameter("value", 1.0f);
+
+		Bot bot = new Bot();
+		bot.addGene(silverGene);
+		bot.name = "Henk";
+		
+		Bot bot2 = bot.clone();
+		assertNotSame(bot, bot2);
+		assertEquals("Henk", bot2.name);
+		assertEquals(1.0f, bot2.genes.get(0).getParameter("value"), 0.001f);
+		
+		bot.genes.get(0).setParameter("value", 2.0f);
+		assertEquals(2.0f, bot.genes.get(0).getParameter("value"), 0.001f);
+		assertEquals(1.0f, bot2.genes.get(0).getParameter("value"), 0.001f);
+		
+		bot.addGene(goldGene);
+		assertEquals(bot.genes.size(), 2);
+		assertEquals(bot2.genes.size(), 1);
+		
+		bot.genes.clear();
+		assertEquals(bot.genes.size(), 0);
+		assertEquals(bot2.genes.size(), 1);
+	}
 
 	@Test
 	public void testSilverBot() {
