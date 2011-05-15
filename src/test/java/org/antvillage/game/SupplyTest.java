@@ -1,7 +1,6 @@
 package org.antvillage.game;
 
 import static org.junit.Assert.*;
-import static org.junit.Assert.fail;
 
 import java.util.ArrayList;
 
