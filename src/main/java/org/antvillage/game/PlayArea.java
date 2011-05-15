@@ -17,7 +17,7 @@ import org.slf4j.LoggerFactory;
  * @author Verik 
  */
 public class PlayArea {
-	private static final Logger LOG = LoggerFactory.getLogger(PlayArea.class);
+	private static final Logger logger = LoggerFactory.getLogger(PlayArea.class);
 	
 	public List<Card> hand = new LinkedList<Card>();
 	public List<Card> drawPile = new LinkedList<Card>();
@@ -36,7 +36,7 @@ public class PlayArea {
 		else {
 			Card drawn = drawPile.remove(0);
 			hand.add(drawn);
-			LOG.debug("Drew {}", drawn);
+			logger.debug("Drew {}", drawn);
 			return drawn;
 		}
 	}
