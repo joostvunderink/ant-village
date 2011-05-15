@@ -25,11 +25,34 @@ public class Game {
 		return determineWinners(playerEndingGame);
 	}
 
-	private List<Player> determineWinners(Player playerEndingGame) {
-//		Map sco
+	public List<Player> determineWinners(Player playerEndingGame) {
+		List<Player> winners = null;
 		
+		float highestScore = -10000;
+		float turnNotPlayedEndBonus = 0;
 		
-		List<Player> winners = new LinkedList<Player>();
+		for(Player player: players) {
+			float score = player.playArea.getVictoryPoints() + turnNotPlayedEndBonus;
+			if (player.equals(playerEndingGame)) {
+				turnNotPlayedEndBonus = 0.1f;
+			}
+			
+			if (score > highestScore) {
+				winners = new LinkedList<Player>();
+				highestScore = score;
+			}
+			if (score == highestScore) {
+				winners.add(player);
+			}
+		}
+		
+		if ( winners.size() > 1) {
+			recorder.info("\nTie between {}", winners);
+		}
+		else {
+			recorder.info("\nWinner: {}", winners.get(0));
+			
+		}
 		return winners;
 	}
 
