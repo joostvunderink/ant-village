@@ -24,13 +24,13 @@ public class GameSetupTest {
 		List<Card> kingdomCards = new LinkedList<Card>();
 		kingdomCards.add(Cards.VILLAGE);
 
-		for (int i = 0; i < 10000; i++) {
+//		for (int i = 0; i < 10000; i++) {
 			Game game = gameSetup.createGame(kingdomCards, players);
 
 			// List<Player> winners = game.start();
 			game.start();
 			assertEquals(game, game);
 			// assertEquals(winners, winners);
-		}
+//		}
 	}
 }
