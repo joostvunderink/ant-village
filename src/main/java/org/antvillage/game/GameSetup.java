@@ -17,7 +17,6 @@ import org.antvillage.cards.Cards;
 public class GameSetup {
 	public final int START_NUM_COPPER = 7;
 	public final int START_NUM_ESTATE = 3;
-	public final int STARTING_HAND_SIZE = 5;
 	
 	public Game createGame(List<Card> kingdomCards, List<Player> players) {
 		Game game = new Game();
@@ -63,10 +62,7 @@ public class GameSetup {
 		for (int i=0; i < START_NUM_ESTATE; i++) {
 			playArea.discardPile.add(Cards.ESTATE);
 		}
-		
-		for (int i=0; i < STARTING_HAND_SIZE; i++) {
-			playArea.drawCard();
-		}
+		playArea.drawHand();
 	}
 }
 
