@@ -10,11 +10,11 @@ import org.antvillage.evolution.SilverGene;
 
 /**
  * This class creates bots from genes.
- *
+ * 
  * @author Verik
  */
 public class BotFactory {
-	
+
 	private NameGenerator nameGenerator = new NameGenerator();
 
 	public void init() {
@@ -28,24 +28,19 @@ public class BotFactory {
 		bot.addGene(new ProvinceGene());
 		bot.addGene(new SilverGene());
 		bot.addGene(new GoldGene());
-		
+
 		bot.name = nameGenerator.getName();
-	
+
 		return bot;
 	}
 
 	public Bot createRandomGenesBot() {
 		Bot bot = createBot();
-		
-		for (Gene gene: bot.genes) {
+
+		for (Gene gene : bot.genes) {
 			gene.randomizeParameters();
 		}
 		return bot;
 	}
 
-	private void randomizeAndAdd(Gene gene, Bot bot) {
-		gene.randomizeParameters();
-		bot.addGene(gene);
-	}
-	
 }

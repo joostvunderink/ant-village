@@ -4,9 +4,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 import org.antvillage.cards.Card;
-import org.antvillage.game.PlayArea;
 import org.antvillage.game.Player;
-import org.antvillage.game.Supply;
 
 /**
  * CardValues is a collection of cards and their (float) values.
