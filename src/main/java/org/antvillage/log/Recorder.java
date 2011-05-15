@@ -1,5 +1,6 @@
-package org.antvillage.game;
+package org.antvillage.log;
 
+import org.apache.log4j.Level;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -33,5 +34,16 @@ public class Recorder {
 	public void info(String message, Object arg0, Object arg1, Object arg2) {
 		Object[] args = { arg0, arg1, arg2 };
 		LOG.info(message, args);
+	}
+
+	public void adjustForGames(int games) {
+		if ( games < 10) {
+			org.apache.log4j.Logger l = org.apache.log4j.Logger.getLogger(Recorder.class);
+			l.setLevel(Level.INFO);
+		}
+		else {
+			org.apache.log4j.Logger l = org.apache.log4j.Logger.getLogger(Recorder.class);
+			l.setLevel(Level.FATAL);
+		}
 	}
 }
