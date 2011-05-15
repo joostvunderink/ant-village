@@ -16,7 +16,21 @@ public class Player {
 	public int playerCount;
 	public List<Player> opponents;
 	
+	public String name;
+	
+	public Player() {
+		super();
+		name = getClass().getSimpleName();
+	}
+
 	public void takeTurn() {
 		
 	}
+
+	@Override
+	public String toString() {
+		return name;
+	}
+	
+	
 }

@@ -10,7 +10,7 @@ import java.util.List;
  * 
  */
 public class Game {
-	private static final Recorder RECORDER = Recorder.getRecorder();
+	private static final Recorder recorder = Recorder.getRecorder();
 
 	private static final int MAX_ROUNDS = 150;
 
@@ -35,7 +35,7 @@ public class Game {
 
 	private Player runGameTurns() {
 		while (round < MAX_ROUNDS) {
-			RECORDER.info("\nROUND {}", round);
+			recorder.info("\nROUND {}", round);
 			for (Player player : players) {
 				runTurn(player);
 				if (supply.isGameFinished()) {
@@ -48,7 +48,7 @@ public class Game {
 	}
 
 	private void runTurn(Player player) {
-		RECORDER.info("\n{}", player);
+		recorder.info("\n{}", player);
 		gameTurn.takeTurn(player);
 	}
 
