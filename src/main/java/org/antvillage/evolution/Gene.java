@@ -5,8 +5,10 @@ import java.util.Map;
 
 import org.antvillage.game.Player;
 
-public abstract class Gene {
+public class Gene {
 	private Map<String, Float> parameters = new HashMap<String, Float>();
+	
+	public final int GENE_PARAMETER_RANDOM_MAX = 100;
 
 	/*
 	 * TODO: Maybe this should be private; only subclasses of Combo should be calling
@@ -19,7 +21,7 @@ public abstract class Gene {
 		parameters.put(name, (float)0);
 	}
 	
-	public void setParameter(String name, Float value) {
+	public void setParameter(String name, float value) {
 		if (parameters.get(name) == null) {
 			throw new RuntimeException("Trying to set non-existing parameter " + name +
 					"; try addParameter() first.");
@@ -28,7 +30,7 @@ public abstract class Gene {
 		parameters.put(name, value);
 	}
 	
-	public Float getParameter(String name) {
+	public float getParameter(String name) {
 		if (parameters.get(name) == null) {
 			throw new RuntimeException("Trying to get non-existing parameter " + name +
 					"; try addParameter() first.");
@@ -37,5 +39,14 @@ public abstract class Gene {
 		return parameters.get(name);
 	}
 	
-	public abstract void calculateBuyValues(CardValues currentValues, Player player);
+	public void randomizeParameters() {
+		for (String name: parameters.keySet()) {
+			float randomValue = (float)(GENE_PARAMETER_RANDOM_MAX * Math.random() + 1.0f);
+			setParameter(name, randomValue);
+		}
+	}
+	
+	public void calculateBuyValues(CardValues currentValues, Player player) {
+		throw new RuntimeException("You need to override calculateBuyValues for class " + this);
+	}
 }
