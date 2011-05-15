@@ -42,14 +42,8 @@ public class GameTurn {
 		activePlayArea.play(card);
 		actions--;
 		
-		/*
-		 * TODO: figure out whether the code below, which resolves the basic +money/+cards/+actions/+buys stuff,
-		 * should be here or in the Card base class.
-		 */
 		money += card.getMoneyValue(activePlayArea);
-		
 		buys += card.getExtraBuys();
-		
 		actions += card.getExtraActions();
 		
 		for (int i=0; i < card.getExtraDraws(); i++) {
