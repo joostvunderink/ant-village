@@ -4,6 +4,8 @@ import java.util.HashMap;
 import java.util.Map;
 
 import org.antvillage.cards.Card;
+import org.antvillage.game.PlayArea;
+import org.antvillage.game.Player;
 import org.antvillage.game.Supply;
 
 /**
@@ -19,11 +21,15 @@ import org.antvillage.game.Supply;
 public class CardValues {
 	private Map<Card, Float> cardValues = new HashMap<Card, Float>();
 	
-	public void initFromSupply(Supply supply) {
+	public void initFromSupply(Player player) {
 		cardValues.clear();
-		for (Card card: supply.stacks.keySet()) {
-			if (supply.countCard(card) > 0) {
-				cardValues.put(card, (float)0);
+		for (Card card: player.supply.stacks.keySet()) {
+			if (player.supply.countCard(card) > 0) {
+				
+				int cardCost = card.getCost(player.playArea);
+				if ( player.gameTurn.money >= cardCost) {
+					cardValues.put(card, (float)0);
+				}
 			}
 		}
 	}
@@ -32,7 +38,7 @@ public class CardValues {
 		cardValues.put(card, value);
 	}
 
-	public float get(Card card) {
+	public Float get(Card card) {
 		return cardValues.get(card);
 	}
 	
@@ -44,7 +50,8 @@ public class CardValues {
 	
 	public void changeValue(Card card, Float value) {
 		if (cardValues.get(card) == null) {
-			throw new RuntimeException("Trying to change value for non-existing card " + card);
+			// trying to assign a value to a card that is not available for purchase. Ignoring.
+			return;
 		}
 		
 		cardValues.put(card, cardValues.get(card) + value);
