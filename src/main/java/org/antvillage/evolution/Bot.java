@@ -6,9 +6,13 @@ import java.util.List;
 import org.antvillage.cards.Card;
 import org.antvillage.game.Phase;
 import org.antvillage.game.Player;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 public class Bot extends Player {
-	CardValues cardValues = new CardValues();
+	private static final Logger logger = LoggerFactory.getLogger(Bot.class);
+
+	public CardValues cardValues = new CardValues();
 	
 	public List<Gene> genes = new LinkedList<Gene>();
 
@@ -61,5 +65,14 @@ public class Bot extends Player {
 		}
 		
 		return bot;
+	}
+
+	public void describe() {
+		logger.debug("{}: ", name);
+		
+		for (Gene gene: genes) {
+			gene.describe();
+		}
+		
 	}
 }

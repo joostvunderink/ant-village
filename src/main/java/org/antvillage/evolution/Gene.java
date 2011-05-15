@@ -4,9 +4,13 @@ import java.util.HashMap;
 import java.util.Map;
 
 import org.antvillage.game.Player;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 public class Gene {
-	private Map<String, Float> parameters = new HashMap<String, Float>();
+	private static final Logger logger = LoggerFactory.getLogger(Gene.class);
+
+	public Map<String, Float> parameters = new HashMap<String, Float>();
 	
 	public final int GENE_PARAMETER_RANDOM_MAX = 100;
 
@@ -62,6 +66,13 @@ public class Gene {
 			throw new RuntimeException(e);
 		} catch (IllegalAccessException e) {
 			throw new RuntimeException(e);
+		}
+	}
+
+	public void describe() {
+		logger.debug("  {}", getClass().getSimpleName());
+		for (String name: parameters.keySet()) {
+			logger.debug("    {}: {}", name, parameters.get(name));
 		}
 	}
 }
