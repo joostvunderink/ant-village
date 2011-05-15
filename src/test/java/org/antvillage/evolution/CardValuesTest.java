@@ -1,14 +1,20 @@
 package org.antvillage.evolution;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNull;
 import static org.junit.Assert.fail;
 
 import java.util.LinkedList;
 
 import org.antvillage.cards.Card;
 import org.antvillage.cards.Cards;
+import org.antvillage.game.GameSetupHelper;
+import org.antvillage.game.GameTurn;
+import org.antvillage.game.PlayArea;
+import org.antvillage.game.Player;
 import org.antvillage.game.Supply;
 import org.junit.Test;
+
 
 public class CardValuesTest {
 	@Test
@@ -17,7 +23,7 @@ public class CardValuesTest {
 		cardValues.put(Cards.COPPER, 1.0f);
 		assertEquals(cardValues.get(Cards.COPPER), 1.0f, 0.001f);
 	}
-
+	
 	@Test
 	public void testChangeValue() {
 		CardValues cardValues = new CardValues();
@@ -29,12 +35,9 @@ public class CardValuesTest {
 	@Test
 	public void testChangeValueNonexistingCard() {
 		CardValues cardValues = new CardValues();
-		try {
-			cardValues.changeValue(Cards.COPPER, 1.0f);
-			fail("Failed to change value of nonexisting card in CardValues");
-		} catch (RuntimeException expected) {
-			// successfully detected absence
-		}
+		cardValues.changeValue(Cards.COPPER, 1.0f);
+		
+		assertNull(cardValues.get(Cards.COPPER));
 	}
 
 	@Test
@@ -70,11 +73,19 @@ public class CardValuesTest {
 		CardValues cardValues = new CardValues();
 		Supply supply = new Supply();
 		supply.init(2, new LinkedList<Card>());
-
-		cardValues.initFromSupply(supply);
+		
+		Player player = new Player();
+		PlayArea playArea = new PlayArea();
+		player.playArea = playArea;
+		GameTurn gameTurn = new GameTurn();
+		player.gameTurn = gameTurn;
+		gameTurn.supply = supply;
+		player.supply = supply;
+		
+		cardValues.initFromSupply(player);
 		assertEquals(cardValues.get(Cards.COPPER), 0.0f, 0.001f);
-		assertEquals(cardValues.get(Cards.ESTATE), 0.0f, 0.001f);
 		assertEquals(cardValues.get(Cards.CURSE), 0.0f, 0.001f);
 	}
-
+	
+	
 }
