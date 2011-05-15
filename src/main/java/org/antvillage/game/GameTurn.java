@@ -10,7 +10,7 @@ import org.antvillage.cards.Card;
  */
 public class GameTurn {
 
-	private static final Recorder RECORDER = Recorder.getRecorder();
+	private static final Recorder recorder = Recorder.getRecorder();
 
 	public Supply supply;
 	public PlayArea activePlayArea;
@@ -29,6 +29,8 @@ public class GameTurn {
 		buys = 1;
 		phase = Phase.ACTION;
 
+		recorder.info("ALL-CARDS: {} {} {}", activePlayArea.drawPile, activePlayArea.hand, activePlayArea.discardPile);
+		recorder.info("hand: {}", activePlayArea.hand);
 		player.takeTurn();
 		
 		activePlayArea.cleanUp();
@@ -73,7 +75,7 @@ public class GameTurn {
 	public void endPhase(Phase phaseToEnd) {
 		checkPhase(phaseToEnd);
 		if (phaseToEnd == Phase.MONEY) {
-			RECORDER.info("money: {}, buys: {}", money, buys);
+			recorder.info("money: {}, buys: {}", money, buys);
 		}
 		
 		phase = phaseToEnd.next;
@@ -95,5 +97,6 @@ public class GameTurn {
 		
 		buys --;
 		money -= cardCost;
+		recorder.info("buy: {} - {} left", card, supply.stacks.get(card));
 	}
 }

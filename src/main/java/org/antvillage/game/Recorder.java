@@ -29,4 +29,9 @@ public class Recorder {
 	public void info(String message, Object arg0, Object arg1) {
 		LOG.info(message, arg0, arg1);
 	}
+
+	public void info(String message, Object arg0, Object arg1, Object arg2) {
+		Object[] args = { arg0, arg1, arg2 };
+		LOG.info(message, args);
+	}
 }

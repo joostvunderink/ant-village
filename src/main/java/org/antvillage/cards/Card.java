@@ -12,6 +12,14 @@ public abstract class Card {
     public int draws = 0;
     public int actions = 0;
     
+    public String name;
+    
+    public Card() {
+		String className = getClass().getSimpleName();
+		name = className.substring(0, className.length() - 4);
+
+    }
+    
     public boolean isAction() {
     	return false;
     }
@@ -53,4 +61,11 @@ public abstract class Card {
     		throw new RuntimeException("Tried to play " + this + " as Action but it is not an Action.");
     	}
     }
+
+	@Override
+	public String toString() {
+		return name;
+	}
+    
+    
 }
