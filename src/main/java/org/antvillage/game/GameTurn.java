@@ -1,6 +1,7 @@
 package org.antvillage.game;
 
 import org.antvillage.cards.Card;
+import org.antvillage.log.Recorder;
 
 /**
  * This class provides the functionality for operating a game turn from the
