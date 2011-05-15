@@ -10,22 +10,18 @@ import org.antvillage.game.Player;
 public class Bot extends Player {
 	CardValues cardValues = new CardValues();
 	
-	private List<Gene> genes = new LinkedList<Gene>();
+	public List<Gene> genes = new LinkedList<Gene>();
 
-	public Bot() {
-	}
-	
 	public void addGene(Gene gene) {
 		genes.add(gene);
 	}
-	
 	
 	public void takeTurn() {
 		gameTurn.endPhase(Phase.ACTION);
 		
 		playAllTreasures();
 
-		gameTurn.endPhase(Phase.MONEY);
+		gameTurn.endPhase(Phase.MONEY);		
 
 		cardValues.initFromSupply(this);
 		
@@ -54,4 +50,16 @@ public class Bot extends Player {
 		}
 	}
 
+	public Bot clone() {
+		Bot bot = new Bot();
+		
+		bot.name = this.name;
+		
+		for (Gene gene: genes) {
+			Gene newGene = gene.clone();
+			bot.addGene(newGene);
+		}
+		
+		return bot;
+	}
 }

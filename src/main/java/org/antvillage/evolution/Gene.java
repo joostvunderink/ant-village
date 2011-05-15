@@ -49,4 +49,19 @@ public class Gene {
 	public void calculateBuyValues(CardValues currentValues, Player player) {
 		throw new RuntimeException("You need to override calculateBuyValues for class " + this);
 	}
+	
+	public Gene clone() {
+		try {
+			Gene gene = this.getClass().newInstance();
+			for (String name: parameters.keySet()) {
+				gene.setParameter(name, parameters.get(name));
+			}
+			
+			return gene;
+		} catch (InstantiationException e) {
+			throw new RuntimeException(e);
+		} catch (IllegalAccessException e) {
+			throw new RuntimeException(e);
+		}
+	}
 }

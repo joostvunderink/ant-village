@@ -94,4 +94,16 @@ public class GeneTest {
 		}
 	}
 
+	@Test
+	public void testSilverGeneClone() {
+		SilverGene gene = new SilverGene();
+		gene.setParameter("value", 1.0f);
+		
+		Gene gene2 = gene.clone();
+		assertEquals(1.0f, gene2.getParameter("value"), 0.001f);
+		
+		gene.setParameter("value", 2.0f);
+		assertEquals(2.0f, gene.getParameter("value"), 0.001f);
+		assertEquals(1.0f, gene2.getParameter("value"), 0.001f);
+	}
 }
