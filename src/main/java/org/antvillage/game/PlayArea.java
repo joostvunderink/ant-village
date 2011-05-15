@@ -82,4 +82,22 @@ public class PlayArea {
 		discardPile.addAll(playedPile);
 		playedPile.clear();
 	}
+
+	public int getVictoryPoints() {
+		int vp = 0;
+		
+		vp += addVP(hand);
+		vp += addVP(playedPile);
+		vp += addVP(discardPile);
+		return vp;
+	}
+
+	private int addVP(List<Card> pile) {
+		int vp = 0;
+		for (Card card: pile) {
+			vp += card.getVictoryPoints();
+		}
+		
+		return vp;
+	}
 }
