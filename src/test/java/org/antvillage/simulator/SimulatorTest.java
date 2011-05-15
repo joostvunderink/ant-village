@@ -9,7 +9,11 @@ public class SimulatorTest {
 	public void testStart() {
 		Simulator simulator = new Simulator();
 		
-//		simulator.runRandomGeneration();
+		simulator.runRandomGeneration();
+		
+		for (int i = 0; i < 100; i++ ) {
+			simulator.runAndEvolveGeneration();
+		}
 	}
 
 }

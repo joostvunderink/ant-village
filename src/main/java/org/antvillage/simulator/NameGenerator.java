@@ -45,8 +45,9 @@ public class NameGenerator {
 	private void readFile(BufferedReader reader) throws IOException {
 		String line = reader.readLine();
 		while (line != null) {
-			String name = line.substring(6);
-			names.add(name);
+			String firstLetter = line.substring(6,7); 
+			String rest = line.substring(7).toLowerCase();
+			names.add(firstLetter+rest);
 			line = reader.readLine();
 		}
 	}

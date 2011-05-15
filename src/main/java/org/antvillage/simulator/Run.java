@@ -23,7 +23,7 @@ public class Run {
 	private static final Logger logger = LoggerFactory.getLogger(Run.class);
 	private static final Recorder recorder = Recorder.getRecorder();
 
-	public int games = 10000;
+	public int games = 1000;
 	public List<Player> players;
 	public List<Card> kingdomCards;
 	public Map<Player, Integer> wins;

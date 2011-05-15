@@ -20,17 +20,26 @@ public class BotFactory {
 	public void init() {
 		nameGenerator.init();
 	}
-	
-	public Bot createRandomGenesBot() {
+
+	public Bot createBot() {
 		Bot bot = new Bot();
-		randomizeAndAdd(new EstateGene(), bot);
-		randomizeAndAdd(new DuchyGene(), bot);
-		randomizeAndAdd(new ProvinceGene(), bot);
-		randomizeAndAdd(new SilverGene(), bot);
-		randomizeAndAdd(new GoldGene(), bot);
+		bot.addGene(new EstateGene());
+		bot.addGene(new DuchyGene());
+		bot.addGene(new ProvinceGene());
+		bot.addGene(new SilverGene());
+		bot.addGene(new GoldGene());
 		
 		bot.name = nameGenerator.getName();
 	
+		return bot;
+	}
+
+	public Bot createRandomGenesBot() {
+		Bot bot = createBot();
+		
+		for (Gene gene: bot.genes) {
+			gene.randomizeParameters();
+		}
 		return bot;
 	}
 

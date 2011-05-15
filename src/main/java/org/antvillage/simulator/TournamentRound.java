@@ -18,14 +18,14 @@ import org.slf4j.LoggerFactory;
  * @author Verik
  */
 public class TournamentRound {
-	private static final Logger logger = LoggerFactory.getLogger(Run.class);
+	private static final Logger logger = LoggerFactory.getLogger(TournamentRound.class);
 
 	public List<Card> kingdomCards;
 	public List<Player> participants;
 	public Map<Player, Integer> wins;
 	public Run run = new Run();
 	
-	public void start() {
+	public Map<Player, Integer> start() {
 		init();
 		run.kingdomCards = kingdomCards;
 		
@@ -38,6 +38,8 @@ public class TournamentRound {
 		}
 		
 		logRoundResults();
+		
+		return wins;
 	}
 
 	private void logRoundResults() {
