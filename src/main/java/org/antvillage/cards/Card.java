@@ -1,6 +1,7 @@
 package org.antvillage.cards;
 
 import org.antvillage.game.PlayArea;
+import org.antvillage.game.Player;
 
 public abstract class Card {
 	public int vp = 0;
@@ -45,5 +46,11 @@ public abstract class Card {
     
     public int getExtraActions() {
     	return actions;
+    }
+    
+    public void playAction(Player player) {
+    	if (!isAction()) {
+    		throw new RuntimeException("Tried to play " + this + " as Action but it is not an Action.");
+    	}
     }
 }

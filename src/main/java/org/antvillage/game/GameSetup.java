@@ -1,5 +1,6 @@
 package org.antvillage.game;
 
+import java.util.LinkedList;
 import java.util.List;
 
 import org.antvillage.cards.Card;
@@ -37,6 +38,14 @@ public class GameSetup {
 			
 			PlayArea playArea = new PlayArea();
 			player.playArea = playArea;
+			
+			/*
+			 * TODO: Fix the order of the players. player.opponents[0] should be the LHO.
+			 */
+			List<Player> opponents = new LinkedList<Player>();
+			opponents.addAll(players);
+			opponents.remove(player);
+			player.opponents = opponents;
 			
 			giveStartingCards(player);
 		}
