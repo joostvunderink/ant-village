@@ -19,7 +19,7 @@ public class GameTest {
 	public void testDetermineWinners() {
 		Game game = new Game();
 		List<Player> players = new LinkedList<Player>();
-		List<Player> winners;
+		Player winner;
 		game.players = players;
 		
 		Player player1 = createAndAddPlayer(players, "player1");
@@ -28,43 +28,41 @@ public class GameTest {
  		// player 1: 6 (winner) (ending)
 		// player 2: 0 
 		player1.playArea.discardPile.add(Cards.PROVINCE);
-		winners = game.determineWinners(player1);
-		assertWinner(winners, player1);
+		winner = game.determineWinners(player1);
+		assertEquals(winner, player1);
 
  		// player 1: 6 (winner)
 		// player 2: 6 (winner) (ending)
 		player2.playArea.discardPile.add(Cards.PROVINCE);
-		winners = game.determineWinners(player2);
-		assertEquals(2, winners.size());
+		winner = game.determineWinners(player2);
+		assertEquals(winner, null);
 
  		// player 1: 6          (ending)
 		// player 2: 6 (winner)
-		winners = game.determineWinners(player1);
-		assertWinner(winners, player2);
+		winner = game.determineWinners(player1);
+		assertEquals(winner, player2);
 
  		// player 1: 6          (ending)
 		// player 2: 6 (winner)
 		// player 3: 3
 		Player player3 = createAndAddPlayer(players, "player3");
 		player3.playArea.discardPile.add(Cards.DUCHY);
-		winners = game.determineWinners(player1);
-		assertWinner(winners, player2);
+		winner = game.determineWinners(player1);
+		assertEquals(winner, player2);
 
  		// player 1: 6          (ending)
 		// player 2: 6 (winner)
 		// player 3: 6 (winner)
 		player3.playArea.discardPile.add(Cards.DUCHY);
-		winners = game.determineWinners(player1);
-		assertEquals(2, winners.size());
-		assertEquals(player2, winners.get(0));
-		assertEquals(player3, winners.get(1));
+		winner = game.determineWinners(player1);
+		assertEquals(winner, null);
 		
  		// player 1: 6          (ending)
 		// player 2: 6 
 		// player 3: 9 (winner)
 		player3.playArea.discardPile.add(Cards.DUCHY);
-		winners = game.determineWinners(player1);
-		assertWinner(winners, player3);
+		winner = game.determineWinners(player1);
+		assertEquals(winner, player3);
 	}
 
 	private void assertWinner(List<Player> players, Player player) {
