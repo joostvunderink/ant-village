@@ -10,11 +10,6 @@ import org.antvillage.game.Phase;
 
 public class BmPocStrategy extends Player {
 	
-	
-	// has ref to gameTurn
-	// has ref to playArea
-	// has ref to supply
-	
 	public void takeTurn() {
 		gameTurn.endPhase(Phase.ACTION);
 		
