@@ -13,7 +13,8 @@ public class GameTurn {
 	private static final Recorder RECORDER = Recorder.getRecorder();
 
 	public Supply supply;
-	private PlayArea activePlayArea;
+	public PlayArea activePlayArea;
+	public Player activePlayer;
 
 	public int money;
 	public int actions;
@@ -21,6 +22,7 @@ public class GameTurn {
 	public Phase phase;
 
 	public void takeTurn(Player player) {
+		activePlayer = player;
 		activePlayArea = player.playArea;
 		money = 0;
 		actions = 1;
@@ -31,6 +33,29 @@ public class GameTurn {
 		
 		activePlayArea.cleanUp();
 		activePlayArea.drawHand();
+	}
+
+	public void playAction(Card card) {
+		checkPhase(Phase.ACTION);
+		activePlayArea.play(card);
+		actions--;
+		
+		/*
+		 * TODO: figure out whether the code below, which resolves the basic +money/+cards/+actions/+buys stuff,
+		 * should be here or in the Card base class.
+		 */
+		money += card.getMoneyValue(activePlayArea);
+		
+		buys += card.getExtraBuys();
+		
+		actions += card.getExtraActions();
+		
+		for (int i=0; i < card.getExtraDraws(); i++) {
+			activePlayArea.drawCard();
+		}
+		
+		// Now process any special effects of the card.
+		card.playAction(activePlayer);
 	}
 
 	public void playTreasure(Card card) {

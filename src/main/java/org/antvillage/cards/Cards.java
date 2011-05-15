@@ -5,6 +5,7 @@ import org.antvillage.cards.base.LaboratoryCard;
 import org.antvillage.cards.base.MarketCard;
 import org.antvillage.cards.base.SmithyCard;
 import org.antvillage.cards.base.VillageCard;
+import org.antvillage.cards.base.WitchCard;
 import org.antvillage.cards.base.WoodcutterCard;
 import org.antvillage.cards.core.CopperCard;
 import org.antvillage.cards.core.CurseCard;
@@ -42,6 +43,7 @@ public class Cards {
 	public static final Card MARKET = new MarketCard();
 	public static final Card SMITHY = new SmithyCard();
 	public static final Card VILLAGE = new VillageCard();
+	public static final Card WITCH = new WitchCard();
 	public static final Card WOODCUTTER = new WoodcutterCard();
 	
 	// Intrigue
