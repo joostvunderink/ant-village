@@ -3,6 +3,8 @@ package org.antvillage.game;
 import java.util.LinkedList;
 import java.util.List;
 
+import org.antvillage.log.Recorder;
+
 /**
  * This class implements a single game.
  * 
@@ -19,13 +21,12 @@ public class Game {
 	public GameTurn gameTurn;
 	public Supply supply;
 
-	public List<Player> start() {
+	public Player start() {
 		Player playerEndingGame = runGameTurns();
-
 		return determineWinners(playerEndingGame);
 	}
 
-	public List<Player> determineWinners(Player playerEndingGame) {
+	public Player determineWinners(Player playerEndingGame) {
 		List<Player> winners = null;
 		
 		float highestScore = -10000;
@@ -48,12 +49,14 @@ public class Game {
 		
 		if ( winners.size() > 1) {
 			recorder.info("\nTie between {}", winners);
+			return null;
 		}
 		else {
-			recorder.info("\nWinner: {}", winners.get(0));
+			Player winner = winners.get(0); 
+			recorder.info("\nWinner: {}", winner);
+			return winner;
 			
 		}
-		return winners;
 	}
 
 	private Player runGameTurns() {
