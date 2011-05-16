@@ -25,38 +25,25 @@ public class DuchyGeneTest {
 
 	@Test
 	public void testDuchyGene() {
-		GameSetup gameSetup = new GameSetup();
-
-		Bot p1 = new Bot();
-		List<Player> players = new LinkedList<Player>();
-		players.add(p1);
-
-		List<Card> kingdomCards = new LinkedList<Card>();
-
-		Game game = gameSetup.createGame(kingdomCards, players);
-
-		game.gameTurn.activePlayer = p1;
-		game.gameTurn.activePlayArea = p1.playArea;
-		game.gameTurn.phase = Phase.BUY;
-		
-		game.gameTurn.money = 10;
+		Bot bot = GeneTestHelper.setupGeneTest();
+		bot.gameTurn.money = 10;
 
 		CardValues currentValues = new CardValues();
-		currentValues.initFromSupply(p1);
+		currentValues.initFromSupply(bot);
 
 		float value = 1.0f;
 		DuchyGene duchyGene = new DuchyGene();
 		duchyGene.setParameter("value", value);
 		duchyGene.setParameter("provincesLeft", 5);
-		p1.addGene(duchyGene);
+		bot.addGene(duchyGene);
 
-		p1.supply.stacks.put(Cards.PROVINCE, 1);
-		duchyGene.calculateBuyValues(currentValues, p1);
+		bot.supply.stacks.put(Cards.PROVINCE, 1);
+		duchyGene.calculateBuyValues(currentValues, bot);
 		assertEquals(value, currentValues.get(Cards.DUCHY), 0.001f);
 
 		currentValues.clear();
-		p1.supply.stacks.put(Cards.PROVINCE, 8);
-		duchyGene.calculateBuyValues(currentValues, p1);
+		bot.supply.stacks.put(Cards.PROVINCE, 8);
+		duchyGene.calculateBuyValues(currentValues, bot);
 		assertEquals(0.0f, currentValues.get(Cards.DUCHY), 0.001f);
 	}
 }
