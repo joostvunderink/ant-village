@@ -12,7 +12,7 @@ public class Gene {
 
 	public Map<String, Float> parameters = new HashMap<String, Float>();
 	
-	public final int GENE_PARAMETER_RANDOM_MAX = 100;
+	public final int GENE_PARAMETER_RANDOM_MAX = 10;
 
 	/*
 	 * TODO: Maybe this should be private; only subclasses of Combo should be calling

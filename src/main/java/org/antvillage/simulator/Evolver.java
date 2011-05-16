@@ -28,6 +28,9 @@ public class Evolver {
 	public List<Bot> generation;
 	public int generationNumber = 0;
 	public Map<Integer, List<Bot>> generationHistory = new HashMap<Integer, List<Bot>>();
+	
+	public float MUTATION_CHANCE = 0.1f;
+	public float MUTATION_FACTOR = 0.5f;
 
 	public void init() {
 		botFactory.init();
@@ -133,9 +136,13 @@ public class Evolver {
 	private void updateGene(Gene childeGene, Gene parentGene) {
 		for (String name: parentGene.parameters.keySet()) {
 			float parentValue = parentGene.getParameter(name);
-			float deviation = (float)random.nextGaussian();
 			
-			float childeValue = parentValue + deviation;
+			float childeValue = parentValue;
+			
+			if (random.nextFloat() < MUTATION_CHANCE) {
+				float deviation = (float)random.nextGaussian() * MUTATION_FACTOR;
+				childeValue += deviation;
+			}
 			
 			childeGene.setParameter(name, childeValue);
 		}	
