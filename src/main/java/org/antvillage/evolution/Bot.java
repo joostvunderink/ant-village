@@ -12,7 +12,8 @@ import org.slf4j.LoggerFactory;
 public class Bot extends Player {
 	private static final Logger logger = LoggerFactory.getLogger(Bot.class);
 
-	public CardValues cardValues = new CardValues();
+	public CardValues cardBuyValues = new CardValues();
+	public CardValues cardPlayValues = new CardValues();
 	
 	public List<Gene> genes = new LinkedList<Gene>();
 
@@ -21,21 +22,37 @@ public class Bot extends Player {
 	}
 	
 	public void takeTurn() {
+		List<Card> actionsInHand = playArea.getActionsInHand();
+		
+		while (gameTurn.actions > 0 && actionsInHand.size() > 0) {
+			cardPlayValues.initFromHand(this);
+			
+			for (Gene gene: genes) {
+				gene.calculateActionValues(cardPlayValues, this);
+			}
+			
+			Card desiredPlayCard = cardPlayValues.getDesiredCard();
+			
+			gameTurn.playAction(desiredPlayCard);
+			
+			actionsInHand = playArea.getActionsInHand();
+		}
+		
 		gameTurn.endPhase(Phase.ACTION);
 		
 		playAllTreasures();
 
 		gameTurn.endPhase(Phase.MONEY);		
 
-		cardValues.initFromSupply(this);
+		cardBuyValues.initFromSupply(this);
 		
 		for (Gene gene: genes) {
-			gene.calculateBuyValues(cardValues, this);
+			gene.calculateBuyValues(cardBuyValues, this);
 		}
 		
-		Card desiredCard = cardValues.getDesiredCard();
+		Card desiredBuyCard = cardBuyValues.getDesiredCard();
 		
-		gameTurn.buyCard(desiredCard);
+		gameTurn.buyCard(desiredBuyCard);
 		
 		gameTurn.endPhase(Phase.BUY);
 	}
