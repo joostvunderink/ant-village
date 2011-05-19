@@ -26,6 +26,41 @@ public class PlayArea {
 	
 	public int bonus_vp;
 	
+	public List<Card> getDeck() {
+		List<Card> deck = new LinkedList<Card>();
+		
+		deck.addAll(hand);
+		deck.addAll(drawPile);
+		deck.addAll(discardPile);
+		deck.addAll(playedPile);
+		
+		return deck;
+	}
+	
+	public int countCardInDeck(Card card) {
+		int count = 0;
+		
+		for (Card deckCard: getDeck()) {
+			if (card.equals(deckCard)) {
+				count++;
+			}
+		}
+		
+		return count;
+	}
+	
+	public List<Card> getActionsInHand() {
+		List<Card> action_cards = new LinkedList<Card>();
+		
+		for (Card handCard: hand) {
+			if (handCard.isAction()) {
+				action_cards.add(handCard);
+			}
+		}
+		
+		return action_cards;
+	}
+	
 	public Card drawCard() {
 		if (drawPile.isEmpty()) {
 			reshuffle();

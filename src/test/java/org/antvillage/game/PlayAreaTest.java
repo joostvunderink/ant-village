@@ -5,6 +5,8 @@ import static org.junit.Assert.assertNull;
 import static org.junit.Assert.assertTrue;
 import static org.junit.Assert.fail;
 
+import java.util.List;
+
 import org.antvillage.cards.Card;
 import org.antvillage.cards.Cards;
 import org.junit.Test;
@@ -76,6 +78,30 @@ public class PlayAreaTest {
 		assertEquals(0, area.hand.size());
 		assertEquals(1, area.playedPile.size());
 	}
+	
+	@Test
+	public void testGetDeck() {
+		PlayArea playArea = new PlayArea();
+		
+		playArea.drawPile.add(Cards.COPPER);
+		playArea.discardPile.add(Cards.CURSE);
+		playArea.hand.add(Cards.ESTATE);
+		
+		List<Card> deck = playArea.getDeck();
+		assertEquals(3, deck.size());
+	}
+
+	@Test
+	public void testCountCardsInDeck() {
+		PlayArea playArea = new PlayArea();
+		
+		playArea.drawPile.add(Cards.COPPER);
+		playArea.discardPile.add(Cards.CURSE);
+		playArea.hand.add(Cards.ESTATE);
+		
+		assertEquals(1, playArea.countCardInDeck(Cards.COPPER));
+		assertEquals(0, playArea.countCardInDeck(Cards.PROVINCE));
+	}
 
 	private void testShuffleExpectation(Card firstExpected, Card secondExpected) {
 		boolean success = false;
@@ -95,5 +121,4 @@ public class PlayAreaTest {
 		}
 		assertTrue(success);
 	}
-
 }
