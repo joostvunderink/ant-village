@@ -86,5 +86,22 @@ public class CardValuesTest {
 		assertEquals(cardValues.get(Cards.CURSE), 0.0f, 0.001f);
 	}
 	
+	@Test
+	public void testInitFromHand() {
+		CardValues cardValues = new CardValues();
+		Player player = new Player();
+		PlayArea playArea = new PlayArea();
+		player.playArea = playArea;
+		playArea.hand.add(Cards.VILLAGE);
+		playArea.hand.add(Cards.VILLAGE);
+		playArea.hand.add(Cards.WITCH);
+		playArea.hand.add(Cards.ESTATE);
+		
+		cardValues.initFromHand(player);
+		assertEquals(0.0f, cardValues.get(Cards.VILLAGE), 0.001f);
+		assertEquals(0.0f, cardValues.get(Cards.WITCH), 0.001f);
+		assertNull(cardValues.get(Cards.ESTATE));
+	}
+	
 	
 }
