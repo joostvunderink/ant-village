@@ -50,8 +50,14 @@ public class Gene {
 		}
 	}
 	
+	public void calculateActionValues(CardValues currentValues, Player player) {
+		// This method needs to be overridden if you want your gene to influence
+		// which action cards are played.
+	}
+	
 	public void calculateBuyValues(CardValues currentValues, Player player) {
-		throw new RuntimeException("You need to override calculateBuyValues for class " + this);
+		// This method needs to be overridden if you want your gene to influence
+		// which cards are bought.
 	}
 	
 	public Gene clone() {

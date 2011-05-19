@@ -81,20 +81,6 @@ public class GeneTest {
 	}
 
 	@Test
-	public void testCalculateBuyValuesFails() {
-		Gene gene = new Gene();
-		CardValues cardValues = new CardValues();
-		Player player = new Player();
-		
-		try {
-			gene.calculateBuyValues(cardValues, player);
-			fail("Failed to call calculateBuyValues which needs to be implemented by child classes");
-		} catch (RuntimeException expected) {
-			// successfully detected absence
-		}
-	}
-
-	@Test
 	public void testSilverGeneClone() {
 		SilverGene gene = new SilverGene();
 		gene.setParameter("value", 1.0f);
